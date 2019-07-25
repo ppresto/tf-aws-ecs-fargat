@@ -1,6 +1,6 @@
 # variables.tf
 
-variable "name" {
+variable "name_prefix" {
   description = "The AWS region things are created in"
   default     = "ppresto-dev"
 }
