@@ -1,13 +1,13 @@
 # alb.tf
 
 resource "aws_alb" "main" {
-  name            = "${var.name}-alb"
+  name            = "${var.name_prefix}-alb"
   subnets         = aws_subnet.public.*.id
   security_groups = [aws_security_group.lb.id]
 }
 
 resource "aws_alb_target_group" "app" {
-  name        = "${var.name}-app-tg"
+  name        = "${var.name_prefix}-app-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id

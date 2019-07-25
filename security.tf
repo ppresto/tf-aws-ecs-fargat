@@ -2,7 +2,7 @@
 
 # ALB Security Group: Edit to restrict access to the application
 resource "aws_security_group" "lb" {
-  name        = "${var.name}-lb-security-group"
+  name        = "${var.name_prefix}-lb-security-group"
   description = "controls access to the ALB"
   vpc_id      = aws_vpc.main.id
 
@@ -10,7 +10,7 @@ resource "aws_security_group" "lb" {
     protocol    = "tcp"
     from_port   = var.app_port
     to_port     = var.app_port
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.alb_ingress_cidrblock}"]
   }
 
   egress {
@@ -23,7 +23,7 @@ resource "aws_security_group" "lb" {
 
 # Traffic to the ECS cluster should only come from the ALB
 resource "aws_security_group" "ecs_tasks" {
-  name        = "${var.name}-tasks-security-group"
+  name        = "${var.name_prefix}-tasks-security-group"
   description = "allow inbound access from the ALB only"
   vpc_id      = aws_vpc.main.id
 

@@ -57,7 +57,7 @@ resource "aws_iam_role_policy_attachment" "autoscale-attach" {
 }
 
 resource "aws_iam_role" "task_execution_role" {
-  name = "fargate-task-execution-role"
+  name = "${var.name_prefix}-fargate-task-execution-role"
 
   assume_role_policy = <<EOF
 {
@@ -77,7 +77,7 @@ EOF
 }
 
 resource "aws_iam_policy" "task_execution_policy" {
-  name = "fargate-task-execution-policy"
+  name = "${var.name_prefix}-fargate-task-execution-policy"
   path = "/"
 
   policy = <<EOF

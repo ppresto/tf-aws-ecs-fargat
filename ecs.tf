@@ -1,14 +1,14 @@
 # ecs.tf
 
 resource "aws_ecs_cluster" "main" {
-  name = "${var.name}-cluster"
+  name = "${var.name_prefix}-cluster"
 }
 
 data "template_file" "cb_app" {
   template = file("templates/ecs/cb_app.json.tpl")
 
   vars = {
-    app_name       = var.name
+    app_name       = var.name_prefix
     app_image      = var.app_image
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
@@ -18,7 +18,7 @@ data "template_file" "cb_app" {
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = "${var.name}-app-task"
+  family                   = "${var.name_prefix}-app-task"
   execution_role_arn       = "${aws_iam_role.task_execution_role.arn}"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "app" {
 }
 
 resource "aws_ecs_service" "main" {
-  name            = "${var.name}-service"
+  name            = "${var.name_prefix}-service"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = var.app_count
@@ -42,7 +42,7 @@ resource "aws_ecs_service" "main" {
 
   load_balancer {
     target_group_arn = aws_alb_target_group.app.id
-    container_name   = "${var.name}-app"
+    container_name   = "${var.name_prefix}-app"
     container_port   = var.app_port
   }
 
