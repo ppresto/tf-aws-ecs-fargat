@@ -2,7 +2,7 @@
 
 variable "name" {
   description = "The AWS region things are created in"
-  default     = "ppresto-ecs-hello2"
+  default     = "ppresto-dev"
 }
 
 variable "aws_region" {
