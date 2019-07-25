@@ -10,7 +10,7 @@ resource "aws_security_group" "lb" {
     protocol    = "tcp"
     from_port   = var.app_port
     to_port     = var.app_port
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["157.131.174.226/32"]
   }
 
   egress {
