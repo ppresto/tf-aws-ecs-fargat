@@ -30,14 +30,10 @@ variable "app_count" {
   default     = 3
 }
 
-#variable "ecs_autoscale_role" {
-#  default     = "arn:aws:iam::309154556741:role/ecsAutoscaleRoles"
-#}
-
-#variable "ecs_task_execution_role" {
-#  description = "Role arn for the ecsTaskExecutionRole"
-#  default     = "arn:aws:iam::309154556741:role/ecsTaskExecutionRole"
-#}
+variable "alb_ingress_cidrblock" {
+  description = "Allowed cidr block for incoming traffic"
+  default     = "0.0.0.0/0"
+}
 
 variable "health_check_path" {
   default = "/"
