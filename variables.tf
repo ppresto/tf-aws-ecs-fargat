@@ -1,38 +1,36 @@
 # variables.tf
 
 variable "name_prefix" {
-  description = "The AWS region things are created in"
-  default     = "ppresto-dev"
+  description = "Required:  The prefix to name and tag your resources with."
 }
 
 variable "aws_region" {
-  description = "The AWS region things are created in"
+  description = "The AWS region to create resources in (default: us-west-2)"
   default     = "us-west-2"
 }
 
 variable "az_count" {
-  description = "Number of AZs to cover in a given region"
+  description = "Number of Availability Zones to cover in a given region"
   default     = "2"
 }
 
 variable "app_image" {
-  description = "Docker image to run in the ECS cluster"
+  description = "Docker image to run in your ECS cluster (default: nginxdemos/hello)"
   default     = "nginxdemos/hello:latest"
 }
 
 variable "app_port" {
-  description = "Port exposed by the docker image to redirect traffic to"
+  description = "Port exposed by the docker image to redirect traffic to (default: 80)"
   default     = 80
 }
 
 variable "app_count" {
-  description = "Number of docker containers to run"
-  default     = 3
+  description = "Number of docker containers to run (default: 1)"
+  default     = 1
 }
 
 variable "alb_ingress_cidrblock" {
-  description = "Allowed cidr block for incoming traffic"
-  default     = "0.0.0.0/0"
+  description = "Required: Allowed IP Range for incoming access.  Do not use 0.0.0.0/0. (ex: 57.131.174.226/32)"
 }
 
 variable "health_check_path" {
