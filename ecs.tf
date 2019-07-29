@@ -22,7 +22,7 @@ data "template_file" "cb_app" {
     fargate_cpu    = var.fargate_cpu,
     fargate_memory = var.fargate_memory,
     aws_region     = var.aws_region
-  }
+  })
 }
 
 resource "aws_ecs_task_definition" "app" {
