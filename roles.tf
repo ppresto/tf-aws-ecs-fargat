@@ -1,5 +1,5 @@
 resource "aws_iam_role" "autoscale_role" {
-  name = "fargate-autoscale-role"
+  name = "${var.name_prefix}-fargate-autoscale-role"
 
   assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "autoscale_policy" {
-  name = "fargate-autoscale-policy"
+  name = "${var.name_prefix}-fargate-autoscale-policy"
   path = "/"
 
   policy = <<EOF
