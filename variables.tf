@@ -2,6 +2,7 @@
 
 variable "name_prefix" {
   description = "Required: The AWS region things are created in"
+  default     = "tf-ecs-default"
 }
 
 variable "aws_region" {
