@@ -5,7 +5,8 @@ resource "aws_ecs_cluster" "main" {
 }
 
 data "template_file" "cb_app" {
-  template = file("./templates/ecs/cb_app.json.tpl")
+  #template = file("./templates/ecs/cb_app.json.tpl")
+  template = "${file(${path.module}/templates/ecs/cb_app.json.tpl}"
 
   vars = {
     app_name       = var.name_prefix
