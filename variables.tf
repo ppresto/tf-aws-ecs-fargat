@@ -1,8 +1,7 @@
 # variables.tf
 
 variable "name_prefix" {
-  description = "Required: The AWS region things are created in"
-  default     = "tf-ecs-default"
+  description = "Required: Provide Project/Infra name_prefix"
 }
 
 variable "aws_region" {
@@ -31,7 +30,8 @@ variable "app_count" {
 }
 
 variable "alb_ingress_cidrblock" {
-  description = "Required: cidr block for incoming traffic. Avoid 0.0.0.0/0 (ex: 157.131.174.226/32)"
+  description = "Required: Add a cidr block for your incoming traffic. Avoid 0.0.0.0/0 (default: 157.131.174.226/32)"
+  default     = "157.131.174.226/32"
 }
 
 variable "health_check_path" {
